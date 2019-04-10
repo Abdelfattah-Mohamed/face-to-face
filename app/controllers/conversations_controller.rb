@@ -1,6 +1,6 @@
-class ConversationController < ActionController::Base
+class ConversationsController < ActionController::Base
     
-    before_action: authentication_user!
+    before_action :authenticate_user!
     
     def index
         @users = User.all
