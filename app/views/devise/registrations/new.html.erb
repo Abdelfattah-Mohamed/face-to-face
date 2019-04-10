@@ -35,8 +35,8 @@
                 <%= f.submit "Sign up", class: "btnSubmit" %>
             </div>
             </br>
-            <%= render "devise/shared/links" %>
-        </div>
+              Have an account: <%= link_to " LogIn", new_session_path(resource_name)%><br />
+            </div>
     </div>
 </div>
 <% end %>
