@@ -8,8 +8,8 @@ class ConversationsController < ActionController::Base
     end
     
     def create
-        if Conversation.between(params[:sende_id], params[:recever_id]).present?
-            @conversation = Conversation.between(params[:sende_id], params[:recever_id]).first
+        if Conversation.between(params[:sender_id], params[:receiver_id]).present?
+            @conversation = Conversation.between(params[:sender_id], params[:receiver_id]).first
         else
             @conversation = Conversation.create!(conversation_param)
         end
@@ -18,6 +18,6 @@ class ConversationsController < ActionController::Base
     
     private
     def conversation_param
-        params.permit(:sender_id, :recever_id)
+        params.permit(:sender_id, :receiver_id)
     end
 end

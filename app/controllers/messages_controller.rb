@@ -7,6 +7,7 @@ class MessagesController < ApplicationController
     @messages = @conversation.messages
     @message = @conversation.messages.new
   end
+  
   def new
     @message = @conversation.messages.new
   end
