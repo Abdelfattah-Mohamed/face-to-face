@@ -7,7 +7,7 @@
         <div class="note">
             <h1>Forgot your password?</h1>
         </div>
-        <div class="form-content">
+        <div class="form-content bord">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -21,8 +21,8 @@
                 <%= f.submit "Send me reset password instructions", class: "btnSubmit" %>
             </div>
             </br>
-              Return to: <%= link_to " LogIn", new_session_path(resource_name) %><br />
-              Don't have account?<%= link_to "Sign up", new_registration_path(resource_name) %><br />
+              Return to: <%= link_to " LogIn", new_session_path(resource_name),class: "link" %><br />
+              Don't have account?<%= link_to "Sign up", new_registration_path(resource_name),class: "link" %><br />
             </div>
     </div>
 </div>
