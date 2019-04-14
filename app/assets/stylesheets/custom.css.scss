@@ -192,7 +192,7 @@ img{ max-width:100%;}
 .received_withd_msg { width: 57%;}
 .mesgs {
   float: left;
-  padding: 30px 15px 25px 25px;
+  padding: 30px 15px 0 25px;
   width: 100%;
   background-color: white;
 }
@@ -203,16 +203,19 @@ img{ max-width:100%;}
   font-size: 14px;
   margin: 0; color:#fff;
   padding: 5px 10px 5px 12px;
-  width: auto;
-  vertical-align: center;
-    white-space: nowrap;
-    overflow: hidden;
+  width:100%;
 }
 .outgoing_msg{ overflow:hidden; margin:26px 0 26px;}
 .sent_msg {
   float: right;
   width: 46%;
 }
+
+
+
+
+
+
 .input_msg_write input {
   background: rgba(0, 0, 0, 0) none repeat scroll 0 0;
   border: medium none;
