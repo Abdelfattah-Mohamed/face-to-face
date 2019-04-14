@@ -5,7 +5,7 @@
         <div class="note">
             <h1>Sign Up</h1>
         </div>
-        <div class="form-content">
+        <div class="form-content bord">
             <div class="row">
                 <div class="col-md-6">
                     <div class="form-group">
@@ -35,7 +35,7 @@
                 <%= f.submit "Sign up", class: "btnSubmit" %>
             </div>
             </br>
-              Have an account: <%= link_to " LogIn", new_session_path(resource_name)%><br />
+              Already have an account?  <%= link_to " LogIn", new_session_path(resource_name),class: "link"%><br />
             </div>
     </div>
 </div>

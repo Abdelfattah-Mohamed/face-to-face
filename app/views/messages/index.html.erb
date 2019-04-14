@@ -1,52 +1,57 @@
-<style>
-  .icon-flipped {
-  transform: scaleX(-1);
-  -moz-transform: scaleX(-1);
-  -webkit-transform: scaleX(-1);
-  -ms-transform: scaleX(-1);
-  }
-  .glyphicon.glyphicon-log-out {
-    font-size: 20px;
-}
-</style>
+
+<div class="container">
 <div class="panel panel-default">
 <% if @over_5 %>
  <%= link_to 'Show All', '?m=all', class: 'btn btn-link pull-right' %>
 <% end %>
-<%= link_to '<i class="glyphicon glyphicon-log-out icon-flipped"></i>'.html_safe,
-'/conversations', { :class => 'tooltips, btn btn-link', 'data-toggle' => 'tooltip',
-   'data-placement' => 'right', :title => 'Back To Inbox' } %>
+<div>
+    <%= link_to '<i class="glyphicon glyphicon-log-out icon-flipped"></i>'.html_safe,
+        '/conversations', { :class => 'tooltips, btn btn-link', 'data-toggle' => 'tooltip',
+        'data-placement' => 'right', :title => 'Back To Inbox' } %>
+    <h3 align= "center"> <%= User.find(@conversation.receiver_id).email %> </h3>
+</div>
 <script>
 $(document).ready(function(){
     $('[data-toggle="tooltip"]').tooltip();
 });
 </script>
- <% @messages.each do |message| %>
-  <% if message.body %>
-   <% user = User.find(message.user_id) %>
-   <div class="item">
-<div class="panel-heading">
-       <div class="header"><strong><%= user.email %> </strong><%= message.message_time %></div>
-      <div class="list">
-       <div class="item">
-        <i class="right triangle icon"></i>
-        <%= message.body %>
-      </div>
+
+<hr />
+
+<div class="mesgs center">
+    <h1> Messages </h1>
+    <div class="msg_history">
+        <% @messages.each do |message| %>
+            <% if message.body %>
+              <% if message.user_id == current_user.id %>
+                <div class="outgoing_msg">
+                    <div class="sent_msg">
+                        <p><%= message.body %></p>
+                        <span class="time_date"><%= message.message_time %></span>
+                    </div>
+                </div>
+             <% else %>
+                <div class="incoming_msg">
+                    <div class="incoming_msg_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                    <div class="received_msg">
+                        <div class="received_withd_msg">
+                            <p><%= message.body %></p>
+                            <span class="time_date"><%= message.message_time %></span>
+                        </div>
+                    </div>
+                </div>
+            <% end %>
+        <% end %>
+    <% end %>
     </div>
-   </div>
- </div>
- <% end %>
-<% end %>
+        <div class="type_msg">
+            <%= form_for [@conversation, @message] do |f| %>
+                <div class="input_msg_write">
+                    <%= f.text_area :body, class: "form-control", placeholder: "Type a message" %>
+                    <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
+                    <button class="msg_send_btn" type="button"><i class="fa fa-paper-plane-o msg_send_btn_float" aria-hidden="true" > <%= f.submit "" %> </i></button>
+                </div>
+            <% end %>
+        </div>
 </div>
-</div>
-<div class="col-md-10 col-md-offset-1">
-<%= form_for [@conversation, @message] do |f| %>
-<div class="form-group">
-  <%= f.text_area :body, class: "form-control" %>
-</div>
-  <%= f.text_field :user_id, value: current_user.id, type: "hidden" %>
-<div class="form-group">
-  <%= f.submit "Send Reply", class: "form-control btn btn-primary" %>
-</div>
-<% end %>
 </div>

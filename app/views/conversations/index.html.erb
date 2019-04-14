@@ -1,52 +1,56 @@
-<style>
-.glyphicon {
-  float: right;
-  margin-top: 2px;
-  margin-right: -6px;
-}
-</style>
-  <div class="list-group col-md-3">
-  <ul class="nav nav-pills nav-stacked">
-    <li><button type="button" class="list-group-item"
-    data-toggle="collapse" data-target="#mail"><h4>Conversations
-      <i class="glyphicon glyphicon-inbox"></i></h4></button></li>
-    <li><button type="button" class="list-group-item"
-    data-toggle="collapse" data-target="#new"><h4>New Message
-      <i class="glyphicon glyphicon-new-window" style="vertical-align:right;"></i></h4></button></li>
-  </ul>
-</div>
-<h1>My Inbox</h1>
-<div class="panel panel-default">
-<div class="col-lg-6">
-  <div id="mail" class="collapse">
-    <h1 class="panel-heading">All Conversations:</h1>
-    <div class="panel-body">
-     <div class="item">
-      <% @conversations.each do |conversation| %>
-      <% if conversation.sender_id == current_user.id || conversation.receiver_id == current_user.id %>
-       <% if conversation.sender_id == current_user.id %>
-         <% recipient = User.find(conversation.receiver_id) %>
-       <% else %>
-         <% recipient = User.find(conversation.sender_id) %>
-       <% end %>
-       <h3><%= link_to recipient.email, conversation_messages_path(conversation)%></h3>
-      <% end %>
-     <% end %>
-     </div>
-    </div>
-   </div>
-  <div id="new" class="collapse">
-    <div class="panel-body">
-     <h1 class="panel-heading">All Users:</h1>
-       <% @users.each do |user| %>
+<div class="container">
+<h1 class=" text-tittle">Conversations</h1>
+<div class="messaging">
+      <div class="inbox_msg">
+        <div class="inbox_people">
+          <div class="headind_srch">
+            <div class="recent_heading">
+              <h4>Recent</h4>
+            </div>
+          </div>
+          <div class="inbox_chat">
+            <% @conversations.each do |conversation| %>
+              <% if conversation.sender_id == current_user.id || conversation.receiver_id == current_user.id %>
+              <% if conversation.sender_id == current_user.id %>
+            <% recipient = User.find(conversation.receiver_id) %>
+             <% else %>
+             <% recipient = User.find(conversation.sender_id) %>
+           <% end %>
+           <div class="chat_list active_chat">
+              <div class="chat_people">
+                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                <div class="chat_ib">
+                  <h5><%= link_to recipient.email, conversation_messages_path(conversation)%> <span class="chat_date"><%= conversation.messages.last.message_time %></span></h5>
+                  <p><%= conversation.messages.last.body %></p>
+                </div>
+              </div>
+            </div>
+             <% end %>
+         <% end %>
+          </div>
+        </div>
+        
+        <div class="inbox_people">
+          <div class="headind_srch">
+            <div class="recent_heading">
+              <h4>All Users</h4>
+            </div>
+          </div>
+          <div class="inbox_chat">
+            <% @users.each do |user| %>
         <% if user.id != current_user.id %>
-         <div class="item"><h3>
-      <%= link_to user.email,
-       conversations_path(sender_id: current_user.id, receiver_id: user.id), method: "post"%>
-     </h3></div>
-      <% end %>
-     <% end %>
+           <div class="chat_list active_chat">
+              <div class="chat_people">
+                <div class="chat_img"> <img src="https://ptetutorials.com/images/user-profile.png" alt="sunil"> </div>
+                <div class="chat_ib">
+                  <h5><%= link_to user.email, conversations_path(sender_id: current_user.id, receiver_id: user.id), method: "post"%></h5>
+                </div>
+              </div>
+            </div>
+             <% end %>
+         <% end %>
+          </div>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
 </div>
