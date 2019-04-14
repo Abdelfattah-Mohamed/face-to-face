@@ -13,7 +13,7 @@ class ConversationsController < ActionController::Base
         else
             @conversation = Conversation.create!(conversation_param)
         end
-        redirect conversation_messages_path(@conversation)
+        redirect_to conversation_messages_path(@conversation)
     end
     
     private

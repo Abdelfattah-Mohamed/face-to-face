@@ -16,7 +16,12 @@ class MessagesController < ApplicationController
     @message = @conversation.messages.new(message_params)
     if @message.save
       redirect_to conversation_messages_path(@conversation)
+    else
+      @conversation = Conversation.find(params[:conversation_id])
+      @messages = @conversation.messages
+      render 'index'
     end
+    
   end
   private
   def message_params
