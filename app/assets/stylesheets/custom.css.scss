@@ -94,6 +94,16 @@ body {
     background: #0062cc;
     color: #fff;
 }
+.btnDanger
+{
+   border:none;
+    border-radius:1.5rem;
+    padding: 1%;
+    width: 20%;
+    cursor: pointer;
+    background: #5f048e;
+    color: #fff; 
+}
 .link
 {
     color: black;
@@ -192,7 +202,7 @@ img{ max-width:100%;}
 .received_withd_msg { width: 57%;}
 .mesgs {
   float: left;
-  padding: 30px 15px 0 25px;
+  padding: 30px 15px 25px 25px;
   width: 100%;
   background-color: white;
 }
@@ -260,4 +270,8 @@ img{ max-width:100%;}
 
 .side_by_side{
 	display:inline-block;
+}
+
+.black{
+  background-color: black;
 }

@@ -1,4 +1,5 @@
 <div class="container">
+    <h1 class="text-tittle"> Messages </h1>
 <div class="panel panel-default">
 <% if @over_5 %>
  <%= link_to 'Show All', '?m=all', class: 'btn btn-link pull-right' %>
@@ -7,7 +8,7 @@
     <%= link_to '<i class="glyphicon glyphicon-log-out icon-flipped"></i>'.html_safe,
         '/conversations', { :class => 'tooltips, btn btn-link', 'data-toggle' => 'tooltip',
         'data-placement' => 'right', :title => 'Back To Inbox' } %>
-    <h3 align= "center"> <%= User.find(@conversation.receiver_id).email %> </h3>
+    <h3 align= "right"> <%= User.find(@conversation.receiver_id).email %> </h3>
 </div>
 <script>
 $(document).ready(function(){
@@ -18,7 +19,6 @@ $(document).ready(function(){
 <hr />
 
 <div class="mesgs center">
-    <h1> Messages </h1>
     <div class="msg_history">
         <% @messages.each do |message| %>
             <% if message.body %>
@@ -56,5 +56,6 @@ $(document).ready(function(){
                 </div>
             <% end %>
         </div>
+</div>
 </div>
 </div>
