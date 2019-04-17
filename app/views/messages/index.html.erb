@@ -58,4 +58,10 @@ $(document).ready(function(){
         </div>
 </div>
 </div>
+<div class="center">
+      <% if user_signed_in? %>
+      <%= link_to "Log out || ", destroy_user_session_path, method: 'delete', class: "link" %> 
+      <%= link_to " Edit Profile", edit_user_registration_path, class: "link" %>
+      <% end %>
+    </div>
 </div>
